@@ -28,7 +28,7 @@ Python, C++, HTML 등을 활용한 다양한 실습과 프로젝트를 포함하
 -  [Web_homework](https://github.com/Gugaeun/Homeworks/tree/main/Web_homework)
   - HTML 을 사용한 UI 작업
   - CSS 를 사용하여 HTML UI 에서 Web UI 처럼 되도록 작업
-  -<img width="1203" height="2487" alt="strawberryFestival" src="https://github.com/user-attachments/assets/0aa2b499-9ee6-4dd6-8802-4c869d0e7e0a" />
+  - 결과 화면 예시 <img width="1203" height="2487" alt="strawberryFestival" src="https://github.com/user-attachments/assets/0aa2b499-9ee6-4dd6-8802-4c869d0e7e0a" />
 
 
 ### 👁 Computer Vision(python)
