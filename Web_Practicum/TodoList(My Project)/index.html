@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ 몽환의 할 일 목록</title>
+<link rel="icon" type="image/png" sizes="192x192" href="image/icon.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="image/icon.png">
+  <link rel="shortcut icon" type="image/png" href="image/icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="image/icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="bg-img"><img id="bgImg" src="image/신비로운 배경.jpg" alt="background"></div>
+<div class="bg-overlay"></div>
+<div class="stars" id="stars"></div>
+
+<div class="main">
+  <div class="photo-header">
+    <img id="headerImg" src="image/신비로운 배경.jpg" alt="배경">
+    <div class="photo-header-overlay">
+      <span class="sub">✦ My Universe ✦</span>
+      <h1>오늘의 <span>할 일</span></h1>
+      <p class="desc">별빛 속에서 하나씩 이루어가요</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="add-row">
+      <input type="text" class="add-input" id="addInput" placeholder="새로운 할 일을 적어봐요 ✨" maxlength="80">
+      <button class="btn-add" id="addBtn" title="추가">＋</button>
+    </div>
+    <div class="filters" id="filters">
+      <button class="filt active" data-f="all">전체</button>
+      <button class="filt" data-f="todo">해야 할 일</button>
+      <button class="filt" data-f="done">완료된 일</button>
+    </div>
+    <div class="stats" id="stats"></div>
+    <ul class="todo-list" id="todoList"></ul>
+    <button class="clear-btn" id="clearBtn">✦ 완료된 항목 모두 지우기</button>
+  </div>
+</div>
+
+<script>
+// ── 별빛 배경 생성 기능 ──
+function createStars() {
+  const container = document.getElementById('stars');
+  if(!container) return;
+  const count = 45;
+  for(let i=0; i<count; i++){
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 2.5 + 1;
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.setProperty('--d', (Math.random() * 3 + 2) + 's');
+    star.style.setProperty('--dl', (Math.random() * 4) + 's');
+    star.style.setProperty('--op', Math.random() * 0.6 + 0.4);
+    container.appendChild(star);
+  }
+}
+document.addEventListener('DOMContentLoaded', createStars);
+
+// ── 할 일 목록 데이터 및 기능 로직 ──
+let todos = [];
+try {
+  const saved = localStorage.getItem('dreamyTodos');
+  if(saved) todos = JSON.parse(saved);
+} catch(e) {
+  todos = [];
+}
+
+let currentFilter = 'all';
+
+const addInput = document.getElementById('addInput');
+const addBtn = document.getElementById('addBtn');
+const todoList = document.getElementById('todoList');
+const filtersContainer = document.getElementById('filters');
+const statsContainer = document.getElementById('stats');
+const clearBtn = document.getElementById('clearBtn');
+
+function save() {
+  localStorage.setItem('dreamyTodos', JSON.stringify(todos));
+  render();
+}
+
+function render() {
+  todoList.innerHTML = '';
+  let filtered = todos;
+  if(currentFilter === 'todo') filtered = todos.filter(t => !t.done);
+  if(currentFilter === 'done') filtered = todos.filter(t => t.done);
+
+  const total = todos.length;
+  const doneCount = todos.filter(t => t.done).length;
+  const todoCount = total - doneCount;
+
+  statsContainer.innerHTML = `
+    <div class="stat"><span class="dot dt"></span>전체 ${total}</div>
+    <div class="stat"><span class="dot dd"></span>해야할 일 ${todoCount}</div>
+    <div class="stat"><span class="dot dl"></span>완료 ${doneCount}</div>
+  `;
+
+  if(filtered.length === 0) {
+    let msg = "할 일이 비어있어요.";
+    if(currentFilter === 'todo') msg = "해야 할 일을 모두 마쳤네요! ✨";
+    if(currentFilter === 'done') msg = "완료된 항목이 없습니다.";
+    todoList.innerHTML = `
+      <li class="empty">
+        <span class="eico">🪐</span>
+        <div>${msg}</div>
+      </li>
+    `;
+    return;
+  }
+
+  filtered.forEach(todo => {
+    const li = document.createElement('li');
+    li.className = 'todo-item' + (todo.done ? ' done' : '');
+
+    const checkBtn = document.createElement('button');
+    checkBtn.className = 'check-btn';
+    checkBtn.innerHTML = todo.done ? '✓' : '';
+    checkBtn.onclick = () => {
+      todo.done = !todo.done;
+      save();
+    };
+
+    const textWrap = document.createElement('div');
+    textWrap.className = 'todo-text-wrap';
+
+    const textSpan = document.createElement('span');
+    textSpan.className = 'todo-text';
+    textSpan.innerText = todo.text;
+
+    const editInput = document.createElement('input');
+    editInput.type = 'text';
+    editInput.className = 'todo-edit-input';
+    editInput.value = todo.text;
+    editInput.maxlength = 80;
+
+    textWrap.appendChild(textSpan);
+    textWrap.appendChild(editInput);
+
+    const acts = document.createElement('div');
+    acts.className = 'item-acts';
+
+    const editBtn = document.createElement('button');
+    editBtn.className = 'act-btn edit-btn';
+    editBtn.innerHTML = '✎';
+    editBtn.title = '수정';
+
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'act-btn save-btn';
+    saveBtn.innerHTML = '✓';
+    saveBtn.title = '저장';
+    saveBtn.style.display = 'none';
+
+    const delBtn = document.createElement('button');
+    delBtn.className = 'act-btn del-btn';
+    delBtn.innerHTML = '✕';
+    delBtn.title = '삭제';
+
+    editBtn.onclick = () => {
+      textSpan.style.display = 'none';
+      editInput.style.display = 'block';
+      editInput.focus();
+      editBtn.style.display = 'none';
+      saveBtn.style.display = 'inline-flex';
+    };
+
+    function doSave() {
+      const val = editInput.value.trim();
+      if(!val) return;
+      todo.text = val;
+      save();
+    }
+
+    saveBtn.onclick = doSave;
+    editInput.onkeydown = (e) => {
+      if(e.key === 'Enter') doSave();
+      if(e.key === 'Escape') render();
+    };
+
+    delBtn.onclick = () => {
+      li.style.animation = 'itemRemove 0.3s ease-in forwards';
+      setTimeout(() => {
+        todos = todos.filter(t => t.id !== todo.id);
+        save();
+      }, 300);
+    };
+
+    acts.appendChild(editBtn);
+    acts.appendChild(saveBtn);
+    acts.appendChild(delBtn);
+
+    li.appendChild(checkBtn);
+    li.appendChild(textWrap);
+    li.appendChild(acts);
+    todoList.appendChild(li);
+  });
+}
+
+function addTodo() {
+  const val = addInput.value.trim();
+  if(!val) return;
+  todos.push({
+    id: Date.now() + Math.random().toString(36).substr(2, 5),
+    text: val,
+    done: false
+  });
+  addInput.value = '';
+  save();
+}
+
+addBtn.onclick = addTodo;
+addInput.onkeydown = (e) => { if(e.key === 'Enter') addTodo(); };
+
+filtersContainer.onclick = (e) => {
+  if(!e.target.classList.contains('filt')) return;
+  document.querySelectorAll('.filt').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  currentFilter = e.target.getAttribute('data-f');
+  render();
+};
+
+clearBtn.onclick = () => {
+  todos = todos.filter(t => !t.done);
+  save();
+};
+
+render();
+</script>
+</body>
+</html>

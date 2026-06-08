@@ -1,0 +1,281 @@
+/* ── 최상위 레이아웃 초기화 ── */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  height: -webkit-fill-available;
+  box-sizing: border-box;
+}
+
+* { box-sizing: inherit; }
+
+:root {
+  --lavender: #c5b4f0;
+  --sky: #8dd4f0;
+  --pink: #f0b8d8;
+  --star: #f4eeff;
+  --violet: #d0baf5;
+  --cosmos: #e89ec8;
+  
+  /* 🌌 가독성을 높이기 위해 선명하게 보정된 핵심 테마 색상들 */
+  --deep-cosmic: #170933;   /* 검은색 대신 사용할 깊은 심해 우주 보라색 (글씨/테두리용) */
+  --text-main: #fcfaff;     /* 메인 글씨 (눈이 편안한 최고 선명도의 미색) */
+  --text-sub: #dfd5f7;      /* 서브 설명 글씨 (보라색 한 방울 섞인 선명한 연보라) */
+  
+  /* 투명 카드 배경 및 서브 투명도 최적화 */
+  --glass: rgba(22, 11, 46, 0.45);     /* 투명도를 소폭 낮추고 어둡게 하여 내부 글씨 격리 */
+  --glass-b: rgba(197, 180, 240, 0.45);  /* 카드의 보라빛 테두리를 더 선명하게 보정 */
+  --glass-h: rgba(175, 135, 240, 0.3);
+}
+
+/* ── 외부 환경과 단절된 절대적 상하좌우 정중앙 배치 ── */
+body {
+  font-family: 'Gowun Batang', serif;
+  background: #110729; 
+  display: grid;
+  place-items: center; 
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── 전체 배경 이미지 고정 ── */
+.bg-img {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.bg-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(23, 9, 51, 0.6) 0%,
+    rgba(23, 9, 51, 0.45) 30%,
+    rgba(23, 9, 51, 0.45) 60%,
+    rgba(23, 9, 51, 0.7) 100
+  );
+}
+
+.stars { position: fixed; inset: 0; z-index: 2; pointer-events: none; }
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: twinkle var(--d,3s) ease-in-out infinite;
+  animation-delay: var(--dl,0s);
+  opacity: 0;
+}
+@keyframes twinkle {
+  0%,100%{opacity:0;transform:scale(.8)}
+  50%{opacity:var(--op,.8);transform:scale(1.2)}
+}
+
+/* ── 갤럭시 S25 가로/세로 규격 컴팩트 프레임 ── */
+.main {
+  position: relative;
+  z-index: 10;
+  width: 360px;       
+  max-width: 100%;    
+  height: 740px;      
+  max-height: 92vh;   
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px; 
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(5, 2, 15, 0.85);
+}
+
+/* ── 모바일 헤더 배너 영역 ── */
+.photo-header {
+  width: 100%;
+  height: 150px; 
+  position: relative;
+  flex-shrink: 0;
+}
+.photo-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+.photo-header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 20%, rgba(17, 7, 33, 0.9) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 14px 18px;
+}
+.photo-header-overlay .sub { font-size:9px; letter-spacing:4px; color:var(--sky); text-transform:uppercase; font-weight: 700; margin-bottom:2px; }
+.photo-header-overlay h1 { font-family:'Nanum Myeongjo',serif; font-weight:800; font-size:23px; color:var(--star); line-height:1.15; text-shadow:0 0 20px rgba(180,140,255,.8); }
+.photo-header-overlay h1 span { color:var(--cosmos); }
+.photo-header-overlay .desc { font-size:11px; color:var(--text-sub); opacity:.85; margin-top:3px; letter-spacing:.5px; }
+
+/* ── 내부 카드 내용 및 하단 꽉 채우는 영역 ── */
+.card {
+  flex: 1;            
+  width: 100%;
+  background: var(--glass);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
+  border: 1px solid var(--glass-b);
+  border-top: none;
+  border-radius: 0 0 24px 24px;
+  padding: 16px; 
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.add-row { display:flex; gap:8px; margin-bottom:14px; }
+.add-input {
+  flex:1; background:rgba(23, 9, 51, 0.4); border:1.5px solid rgba(197, 180, 240, 0.4);
+  border-radius:12px; padding:10px 12px;
+  font-family:'Gowun Batang',serif; font-size:13px; color:var(--text-main); outline:none; transition:all .3s;
+}
+.add-input::placeholder { color:rgba(200,175,245,.5); }
+.add-input:focus { border-color:var(--lavender); background:rgba(23, 9, 51, 0.6); box-shadow:0 0 12px rgba(175,115,245,.3); }
+
+.btn-add {
+  background: linear-gradient(135deg, rgba(157, 112, 235, 0.85), rgba(214, 112, 178, 0.85));
+  border:1px solid rgba(255, 255, 255, 0.25); border-radius:12px;
+  padding:10px 12px; color:var(--star); font-size:16px; cursor:pointer;
+  font-weight: 700; transition:all .3s; line-height:1; display:flex; align-items:center; justify-content:center; min-width:40px;
+}
+.btn-add:hover { transform:scale(1.05); background: linear-gradient(135deg, rgba(157, 112, 235, 1), rgba(214, 112, 178, 1)); }
+
+.filters { display:flex; gap:6px; margin-bottom:12px; flex-wrap:wrap; }
+.filt {
+  background: rgba(23, 9, 51, 0.4); border: 1.5px solid rgba(195,165,240,.4);
+  border-radius:16px; padding:5px 12px; color: var(--text-sub);
+  font-family:'Gowun Batang',serif; font-size:11px; cursor:pointer; transition:all .25s; font-weight: 700;
+}
+.filt.active, .filt:hover { background: var(--lavender); border-color: var(--star); color: var(--deep-cosmic); }
+
+.stats {
+  display:flex; gap:8px; margin-bottom:12px; padding:6px 10px;
+  background: rgba(23, 9, 51, 0.3); border-radius:10px; border:1px solid rgba(185,155,240,.2);
+}
+.stat { display:flex; align-items:center; gap:4px; font-size:11px; color: var(--text-sub); font-weight: 700; }
+.dot { width:6px; height:6px; border-radius:50%; }
+.dt { background:var(--violet); }
+.dd { background:var(--sky); }
+.dl { background:var(--cosmos); }
+
+/* 리스트 내부 독립 스크롤 */
+.todo-list { 
+  list-style:none; 
+  display:flex; 
+  flex-direction:column; 
+  gap:8px; 
+  flex: 1;
+  overflow-y:auto; 
+  padding-left: 0 !important;
+  padding-right:2px; 
+}
+.todo-list::-webkit-scrollbar { width:3px; }
+.todo-list::-webkit-scrollbar-thumb { background:rgba(175,135,240,.4); border-radius:3px; }
+
+/* ── 할 일 아이템 목록 카드 영역 (가독성 집중 보정) ── */
+.todo-item {
+  display:flex; align-items:center; gap:8px; padding:11px 12px;
+  background: rgba(27, 13, 56, 0.65); /* 내부 배경을 살짝 더 어둡게 깔아 글씨 강조 */
+  border: 1.5px solid rgba(195, 165, 240, 0.35); /* 테두리를 두껍고 선명하게 변경 */
+  border-radius:12px; transition:all .3s; 
+  animation:slideIn .35s ease-out forwards; 
+  position:relative; overflow:hidden;
+}
+.todo-item::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:4px;
+  background:linear-gradient(180deg,var(--lavender),var(--cosmos)); border-radius:3px 0 0 3px;
+}
+.todo-item.done::before { background:linear-gradient(180deg,var(--sky),#9ddec0); }
+.todo-item.done { opacity:.5; background: rgba(17, 7, 33, 0.4); border-color: rgba(195, 165, 240, 0.15); }
+.todo-item.done .todo-text { text-decoration:line-through; color:rgba(185, 175, 205, 0.45); }
+
+/* ── [체크박스 버튼 보정] ── */
+.check-btn {
+  flex-shrink:0; width:20px; height:20px; border-radius:50%;
+  border: 2px solid var(--violet); /* 라인을 2px로 두껍게 하고 보랏빛 선명하게 교정 */
+  background: rgba(23, 9, 51, 0.5); cursor:pointer;
+  display:flex; align-items:center; justify-content:center; font-size:11px; color:transparent;
+  transition: all 0.2s;
+}
+.check-btn:hover { border-color: var(--star); background: rgba(197, 180, 240, 0.2); }
+.todo-item.done .check-btn { 
+  background: linear-gradient(135deg, #4fa3a3, #5caec7); 
+  border-color: var(--sky); 
+  color: var(--deep-cosmic); /* 체크 표시(✓)가 묻히지 않도록 내부 심해색 적용 */
+  font-weight: 900;
+}
+
+.todo-text-wrap { flex:1; min-width:0; }
+.todo-text { font-size:13px; color:var(--text-main); word-break:break-word; line-height:1.4; font-weight: 700; }
+.todo-edit-input {
+  width:100%; background:var(--deep-cosmic); border:1.5px solid var(--lavender);
+  border-radius:6px; padding:4px 6px; font-family:'Gowun Batang',serif; font-size:13px; color:var(--text-main); outline:none; display:none;
+}
+
+.item-acts { display:flex; gap:6px; flex-shrink:0; }
+
+/* ── [삭제(✕) 및 수정(✎) 버튼 보정] ── */
+.act-btn {
+  width:24px; height:24px; border-radius:6px; 
+  border: 1.5px solid rgba(195, 165, 240, 0.5); /* 테두리를 명확하게 보정 */
+  background: rgba(23, 9, 51, 0.6); /* 버튼 내부에 어두운 보라색을 채워 배경과 분리 */
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  font-size:12px; color: var(--violet); /* 아이콘 색상을 선명한 연보라로 변경 */
+  transition: all 0.2s;
+}
+.act-btn:hover {
+  border-color: var(--star);
+  color: var(--star);
+  background: rgba(195, 165, 240, 0.25);
+}
+/* 특히 삭제 버튼(✕)은 마우스 올렸을 때 은은한 핑크빛 경고톤으로 변경 */
+.del-btn:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+  background: rgba(240, 112, 178, 0.15);
+}
+
+.empty { 
+  text-align:center; 
+  padding:40px 10px; 
+  color: rgba(195, 170, 240, 0.6); 
+  font-size:12px; 
+  margin: auto 0; 
+  font-weight: 700;
+}
+.empty .eico { font-size:24px; margin-bottom:4px; display:block; }
+
+/* ── 하단 전체 지우기 버튼 보정 ── */
+.clear-btn {
+  width:100%; margin-top:10px; padding:10px;
+  background: rgba(23, 9, 51, 0.4); 
+  border: 1.5px dashed rgba(195, 165, 240, 0.5);
+  border-radius:12px; color: var(--text-sub); font-family:'Gowun Batang',serif;
+  font-size:11px; cursor:pointer; font-weight: 700; transition: all 0.2s;
+}
+.clear-btn:hover { color:var(--star); border-style: solid; border-color: var(--cosmos); background:rgba(240,125,165,.1); }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes itemRemove { 
+  to { opacity:0; transform:translateX(28px); height:0; padding:0; margin:0; border:none; } 
+}
