@@ -35,12 +35,21 @@ Python, C++, HTML 등을 활용한 다양한 실습과 프로젝트를 포함하
   - [예시 코드](https://github.com/Gugaeun/C-language/blob/main/Chap01/homework3-1.cpp)
     
 ### 🌐 Web
--  [Web_Practicum](https://github.com/Gugaeun/Practicum/tree/main/Web_homework)
+-  [Web_Practicum](https://github.com/Gugaeun/Practicum/blob/main/Web_Practicum)
   - HTML 을 사용한 UI 작업
   - CSS 를 사용하여 HTML UI 에서 Web UI 처럼 되도록 작업
   - 결과 화면 예시
-    <img width="800" height="1600" alt="strawberryFestival" src="https://github.com/user-attachments/assets/0aa2b499-9ee6-4dd6-8802-4c869d0e7e0a" />
+    <img width="600" height="1000" alt="strawberryFestival" src="https://github.com/user-attachments/assets/0aa2b499-9ee6-4dd6-8802-4c869d0e7e0a" />
   - [예시 코드](https://github.com/Gugaeun/Practicum/blob/main/Web_Practicum/palaces(homework).html)
+
+  - [Web_Practicum](https://github.com/Gugaeun/Practicum/blob/main/Web_Practicum/TodoList(My%20Project)/index.html)
+  - HTML을 사용한 UI  작업
+  - CSS 를 사용해서 Web UI 처럼 되도록 작업
+  - Netlify 를 사용해 파일 주소를 생성 후, 모바일에서도 사용 가능하게 작업
+  - 결과 화면 예시(모바일 버전)
+    <img width="409" height="700" alt="image" src="https://github.com/user-attachments/assets/d95aa0af-e0bc-47a8-b032-670694f2e10d" />
+  - 결과 화면 예시(PC 버전)
+    <img width="900" height="700" alt="image" src="https://github.com/user-attachments/assets/28b0c488-50e6-4e2d-9852-bc0057c52fca" />
 
 ### 👁 Computer Vision(python)
 -  [CV_Practicum](https://github.com/Gugaeun/Practicum/tree/main/CV_homework)
