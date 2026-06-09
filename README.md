@@ -34,11 +34,14 @@ Python, C++, HTML 등을 활용한 다양한 실습과 프로젝트를 포함하
   - [Stack : 배열, 연결된 구조 포함](https://github.com/Gugaeun/Practicum/blob/main/py_Practicum/ArrayStack.py)
     - <img width="392" height="800" alt="스크린샷 2026-06-08 125654" src="https://github.com/user-attachments/assets/42ec0420-ce9e-4cb3-bfee-385d7eb89eed" />
   - [괄호 포함 수식 계산기](https://github.com/Gugaeun/Practicum/blob/main/py_Practicum/ExprCalc.py)
-    - <img width="800" height="400" alt="스크린샷 2026-06-08 125143" src="https://github.com/user-attachments/assets/0703c030-3394-4720-b947-f4987c57c33a" />
+    - <img width="800" height="450" alt="스크린샷 2026-06-08 125143" src="https://github.com/user-attachments/assets/0703c030-3394-4720-b947-f4987c57c33a" />
   - [라인편집기](https://github.com/Gugaeun/Practicum/blob/main/py_Practicum/LineEdit.py)
     - <img width="800" height="450" alt="스크린샷 2026-06-08 124238" src="https://github.com/user-attachments/assets/668e3da6-e084-4666-b98b-21cdc10df95d" />
   - [미로 탐색(깊이 탐색)](https://github.com/Gugaeun/Practicum/blob/main/py_Practicum/MazeSimul.py)
-    - <img width="800" height="450" alt="스크린샷 2026-06-08 125209" src="https://github.com/user-attachments/assets/a6052e17-3421-4ac1-b644-b98b5318ce5c" />
+    - <img width="800" height="500" alt="스크린샷 2026-06-10 085200" src="https://github.com/user-attachments/assets/f7dbeae0-1d9e-411b-8e88-9c3ee309338c" />
+    - 출구 찾기 실패!
+    - <img width="800" height="500" alt="스크린샷 2026-06-10 085213" src="https://github.com/user-attachments/assets/e3cec584-0395-4191-b40d-a89c06abb9b2" />
+    - 출구 찾기 성공!
 
 ### 💻 C++
 -  [C++ Practicum](https://github.com/Gugaeun/Practicum/tree/main/C%2B%2B%20homework)
