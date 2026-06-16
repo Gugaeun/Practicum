@@ -175,21 +175,6 @@ pq2.clear()
 pq2.display()
 print(f"  isEmpty : {pq2.is_empty()}")             # True
 
-
-# 3. 예외 처리 테스트
-print("\n\n" + "=" * 60)
-print("            예외 처리 테스트")
-print("=" * 60)
-
-for desc, fn in [
-    ("빈 큐 Dequeue", lambda: pq2.dequeue()),
-    ("빈 큐 Peek",    lambda: pq2.peek()),
-]:
-    try:
-        fn()
-    except IndexError as e:
-        print(f"  [{desc}] → {e}")
-
 print("\n▶ isFull 테스트 (max_size=3)")
 small = PriorityQueue(max_size=3)
 small.enqueue((1, "A"))
