@@ -32,7 +32,7 @@ Python을 활용한 실습 과제 모음입니다.
 
 ---
 
-## 📌 자료구조 실습 (Flet UI 포함)
+## 📌 자료구조 실습 1 (Flet UI 포함)
 
 Python을 이용한 자료구조 중 List, Set, Stack의 예제와 Flet을 사용하여 UI 생성
 
@@ -72,6 +72,7 @@ Queue / Deque 계열 자료구조 구현 및 응용 프로그램
 ### 🗂 Queue (선형 큐)
 - 배열 기반 선형 큐 구현
 - [ArrayQueue.py](https://github.com/Gugaeun/Practicum/blob/main/py_Practicum/SecondPython/ArrayQueue.py)
+- <img width="274" height="343" alt="스크린샷 2026-06-16 124415" src="https://github.com/user-attachments/assets/b55dec4d-67fd-442d-b707-bbc402151c74" />
 
 ### 🔄 CircularQueue (원형 큐)
 - 선형 큐의 메모리 낭비 문제를 개선한 원형 구조
