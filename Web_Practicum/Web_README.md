@@ -22,7 +22,7 @@ HTML / CSS / JavaScript를 활용한 웹 UI 실습 과제 모음입니다.
 - 결과 화면 예시 (모바일 버전)
   - <img width="300" height="650" alt="TodoList 모바일" src="https://github.com/user-attachments/assets/d95aa0af-e0bc-47a8-b032-670694f2e10d" />
 - 결과 화면 예시 (PC 버전)
-  - <img width="700" height="500" alt="TodoList PC" src="https://github.com/user-attachments/assets/28b0c486-50e6-4e2d-9852-bc0057c52fca" />
+  - <img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/28b0c488-50e6-4e2d-9852-bc0057c52fca" />
 - [예시 코드](https://github.com/Gugaeun/Practicum/blob/main/Web_Practicum/TodoList(My%20Project)/index.html)
 
 ---
