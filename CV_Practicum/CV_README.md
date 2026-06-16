@@ -1,6 +1,6 @@
 # 👁 Computer Vision Practicum
 
-OpenCV를 활용한 영상 처리 실습 과제 모음입니다.
+OpenCV를 활용한 영상 처리 실습입니다.
 
 ---
 
