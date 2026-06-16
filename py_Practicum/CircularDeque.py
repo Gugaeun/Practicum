@@ -247,15 +247,3 @@ dq.clear()
 dq.display()
 print(f"  isEmpty : {dq.is_empty()}")              # True
 
-# 예외 처리 테스트
-print("\n▶ 예외 처리 테스트")
-for desc, fn in [
-    ("빈 덱 DeleteFront", lambda: dq.delete_front()),
-    ("빈 덱 DeleteRear",  lambda: dq.delete_rear()),
-    ("빈 덱 getFront",    lambda: dq.get_front()),
-    ("빈 덱 getRear",     lambda: dq.get_rear()),
-]:
-    try:
-        fn()
-    except IndexError as e:
-        print(f"  [{desc}] → {e}")
