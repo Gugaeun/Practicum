@@ -1,6 +1,6 @@
 # 📚 Practicum Repository
 
-대학교 수업에서 수행한 과제들을 정리한 저장소입니다.  
+대학교 수업에서 수행한 실습들을 정리한 저장소입니다.  
 Python, C++, HTML 등을 활용한 다양한 실습과 프로젝트를 포함하고 있습니다.
 
 ## 📁 Repository Structure
