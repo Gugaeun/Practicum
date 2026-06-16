@@ -180,15 +180,3 @@ print("\n▶ clear 테스트")
 cq.clear()
 cq.display()
 print(f"  isEmpty : {cq.is_empty()}")             # True
-
-# 예외 처리 테스트
-print("\n▶ 예외 처리 테스트")
-try:
-    cq.dequeue()
-except IndexError as e:
-    print(f"  [dequeue 오류] → {e}")
-
-try:
-    cq.peek()
-except IndexError as e:
-    print(f"  [peek 오류] → {e}")
