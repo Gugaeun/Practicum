@@ -130,23 +130,3 @@ print("\n▶ clear 테스트")
 queue.clear()
 queue.display()
 print(f"  isEmpty : {queue.is_empty()}")          # True
-
-# 예외 처리 테스트
-print("\n▶ 예외 처리 테스트")
-try:
-    queue.dequeue()
-except IndexError as e:
-    print(f"  [dequeue 오류] → {e}")
-
-try:
-    queue.peek()
-except IndexError as e:
-    print(f"  [peek 오류] → {e}")
-
-full_queue = ArrayQueue(max_size=2)
-full_queue.enqueue(1)
-full_queue.enqueue(2)
-try:
-    full_queue.enqueue(3)
-except OverflowError as e:
-    print(f"  [enqueue 오류] → {e}")
